@@ -20,9 +20,6 @@ func (a *array) LargestElementOfAnArray(input []int) int {
 		}
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, input[largest])
-
 	return largest
 }
 
@@ -40,9 +37,6 @@ func (a *array) SecondLargest(input []int) int {
 		}
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, input[res])
-
 	return res
 }
 func (a *array) ArraySorted(input []int) bool {
@@ -56,9 +50,6 @@ func (a *array) ArraySorted(input []int) bool {
 		}
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
-
 	return res
 }
 
@@ -70,9 +61,6 @@ func (a *array) ReverseArray(input []int) []int {
 		start += 1
 		last -= 1
 	}
-
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, input)
 
 	return input
 }
@@ -89,9 +77,6 @@ func (a *array) RemoveDuplicatesFromSortedArray(input []int) []int {
 		}
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
-
 	return input
 }
 
@@ -105,9 +90,6 @@ func (a *array) MoveZeros(input []int) []int {
 		}
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, input)
-
 	return input
 }
 
@@ -116,9 +98,6 @@ func (a *array) ShiftArrayByDElements(input []int, d int) []int {
 	input = utils.ReverseArrayHelper(input, 0, d-1)
 	input = utils.ReverseArrayHelper(input, d, len(input)-1)
 	input = utils.ReverseArrayHelper(input, 0, len(input)-1)
-
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, input)
 
 	return input
 }
@@ -146,9 +125,6 @@ func (a *array) MaximumDifference(input []int) int {
 		min = utils.Min(input[i], min)
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
-
 	return res
 }
 
@@ -160,9 +136,6 @@ func (a *array) StockBuyAndSell(input []int) int {
 			profit += input[i] - input[i-1]
 		}
 	}
-
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, profit)
 
 	return profit
 }
@@ -176,9 +149,6 @@ func (a *array) RemoveDuplicates(nums []int) int {
 			res += 1
 		}
 	}
-
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), nums, res)
 
 	return len(nums)
 }
@@ -204,9 +174,6 @@ func (a *array) TrapRainWater(input []int) int {
 		res += utils.Min(lmax[i], rmax[i]) - input[i]
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
-
 	return res
 
 }
@@ -223,9 +190,6 @@ func (a *array) ConsecutiveOnes(input []int) int {
 		}
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
-
 	return res
 }
 
@@ -237,9 +201,6 @@ func (a *array) MaxSubArray(input []int) int {
 		current = utils.Max(current+input[i], input[i])
 		res = utils.Max(current, res)
 	}
-
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
 
 	return res
 }
@@ -256,9 +217,6 @@ func (a *array) MaxlengthEvenOddSubArray(input []int) int {
 		}
 	}
 
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
-
 	return res
 }
 
@@ -274,9 +232,6 @@ func (a *array) MaxCircularSumSubArray(input []int) int {
 		currMin = utils.Min(currMin+input[i], input[i])
 		min = utils.Min(currMin, min)
 	}
-
-	//logging function details
-	utils.LogFunctionInfo(utils.GetFunctionName(), input, res)
 
 	return res - min
 }
