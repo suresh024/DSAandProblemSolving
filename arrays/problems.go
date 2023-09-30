@@ -1,6 +1,7 @@
 package arrays
 
 import (
+	"fmt"
 	"github.com/suresh024/DSAandProblemSolving/utils"
 )
 
@@ -194,6 +195,7 @@ func (a *array) ConsecutiveOnes(input []int) int {
 }
 
 // []int{-3, 8, -2, 4, -5, 6}
+// Kaden's algorithm
 func (a *array) MaxSubArray(input []int) int {
 	res, current := input[0], input[0]
 
@@ -222,16 +224,133 @@ func (a *array) MaxlengthEvenOddSubArray(input []int) int {
 
 // []int{8, -4, 3, -5, 4}
 func (a *array) MaxCircularSumSubArray(input []int) int {
-	res, curr := 0, 0
-	min, currMin := 0, 0
+	maxSum := a.MaxSubArray(input)
 
-	for i := 1; i < len(input); i++ {
-		curr = utils.Max(curr+input[i], input[i])
-		res = utils.Max(curr, res)
-
-		currMin = utils.Min(currMin+input[i], input[i])
-		min = utils.Min(currMin, min)
+	if maxSum < 0 {
+		return maxSum
 	}
 
-	return res - min
+	arraySum := 0
+	for i := 0; i < len(input); i++ {
+		arraySum += input[i]
+		input[i] = -input[i]
+	}
+
+	maxCircular := arraySum + a.MaxSubArray(input)
+
+	return utils.Max(maxSum, maxCircular)
+}
+
+func (a *array) MajorityElement(input []int) int {
+	res, count := 0, 1
+
+	//to get majority element
+	for i := 0; i < len(input); i++ {
+		if input[res] == input[i] {
+			count += 1
+		} else {
+			count -= 1
+		}
+
+		if count == 0 {
+			count = 1
+			res = i
+		}
+	}
+
+	count = 0
+	// to confirm this element appeared > n/2 times
+	for i := 0; i < len(input); i++ {
+		if input[res] == input[i] {
+			count += 1
+		}
+	}
+
+	if count > len(input)/2 {
+		return res
+	}
+	return -1
+}
+
+// []int{0,0,1,1,0,0,1,1,0}
+func (a *array) MinConsecutiveFlips(input []int) int {
+	count := 0
+	for i := 1; i < len(input); i++ {
+		if input[i] != input[i-1] {
+			if input[i] != input[0] {
+				count += 1
+				fmt.Printf("from %v to ", i)
+			} else {
+				fmt.Printf("%v\n", i-1)
+			}
+		}
+	}
+
+	if input[len(input)-1] != input[0] {
+		fmt.Printf("%v", len(input)-1)
+	}
+
+	return count
+}
+
+// sliding window techinque
+func (a *array) MaxKSum(input []int, k int) int {
+	curr := 0
+	for i := 0; i < k; i++ {
+		curr += input[i]
+	}
+	res := curr
+	for i := k; i < len(input); i++ {
+		curr = curr + input[i] - input[i-k]
+		res = utils.Max(curr, res)
+	}
+
+	return res
+}
+
+func (a *array) SubArrayWithGivenSum(input []int, sum int) bool {
+	res, curr := 0, 0
+	for i := 0; i < len(input); i++ {
+		curr += input[i]
+		for curr > sum {
+			curr -= input[res]
+			res += 1
+		}
+		if curr == sum {
+			return true
+		}
+	}
+	return false
+}
+
+func (a *array) PrefixSumProblem(input []int) {
+	pSum := utils.PrefixSumArray(input)
+	//queries
+	fmt.Println(prefixSumHelper(pSum, 0, 2))
+	fmt.Println(prefixSumHelper(pSum, 1, 3))
+	fmt.Println(prefixSumHelper(pSum, 2, 6))
+}
+
+func prefixSumHelper(input []int, s, e int) int {
+	if s == 0 {
+		return input[e]
+	}
+	return input[e] - input[s-1]
+}
+
+// []int{3, 4, 8, -9, 9, 7}
+func (a *array) EquilibriumElementInArray(input []int) bool {
+	pSum := utils.PrefixSumArray(input)
+	sSum := utils.SuffixSumArray(input)
+
+	if pSum[len(input)-1] == 0 || sSum[len(input)-1] == 0 {
+		return true
+	}
+
+	for i := 1; i < len(input)-1; i++ {
+		if pSum[i-1] == sSum[i+1] {
+			return true
+		}
+	}
+	return false
 }

@@ -17,4 +17,10 @@ type ArrayProblems interface {
 	MaxSubArray(input []int) int
 	MaxlengthEvenOddSubArray(input []int) int
 	MaxCircularSumSubArray(input []int) int
+	MajorityElement(input []int) int
+	MinConsecutiveFlips(input []int) int
+	MaxKSum(input []int, k int) int
+	SubArrayWithGivenSum(input []int, sum int) bool
+	PrefixSumProblem(input []int)
+	EquilibriumElementInArray(input []int) bool
 }
