@@ -340,17 +340,21 @@ func prefixSumHelper(input []int, s, e int) int {
 
 // []int{3, 4, 8, -9, 9, 7}
 func (a *array) EquilibriumElementInArray(input []int) bool {
-	pSum := utils.PrefixSumArray(input)
-	sSum := utils.SuffixSumArray(input)
+	rs := 0
 
-	if pSum[len(input)-1] == 0 || sSum[len(input)-1] == 0 {
-		return true
+	for i := 0; i < len(input); i++ {
+		rs += input[i]
 	}
 
-	for i := 1; i < len(input)-1; i++ {
-		if pSum[i-1] == sSum[i+1] {
+	ls := 0
+
+	for i := 0; i < len(input); i++ {
+		rs -= input[i]
+		if ls == rs {
 			return true
 		}
+		ls += input[i]
 	}
+
 	return false
 }
