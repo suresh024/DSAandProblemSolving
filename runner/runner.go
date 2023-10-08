@@ -2,10 +2,11 @@ package runner
 
 import (
 	"fmt"
-	"github.com/suresh024/DSAandProblemSolving/arrays"
+	"github.com/suresh024/DSAandProblemSolving/search"
 )
 
 func Run() {
-	arrays.ArrayRunner()
+	//arrays.ArrayRunner()
+	search.SearchRunner()
 	fmt.Println("runner")
 }
