@@ -126,7 +126,7 @@ func (s *search) SquareRoot(num int) int {
 }
 
 func (s *search) SearchInInfiniteArray(input []int, num int) int {
-	if input[0] == 0 {
+	if input[0] == num {
 		return 0
 	}
 	i := 1
@@ -137,4 +137,45 @@ func (s *search) SearchInInfiniteArray(input []int, num int) int {
 		return i
 	}
 	return s.BinarySearchRecursive(input, (i/2)+1, i-1, num)
+}
+
+func (s *search) SearchInRotatedArray(input []int, num int) int {
+	start, end := 0, len(input)-1
+	for start <= end {
+		mid := (start + end) / 2
+		if input[mid] == num {
+			return mid
+		}
+		if num <= input[mid] {
+			if num < input[mid] && num >= input[start] {
+				end = mid - 1
+			} else {
+				start = mid + 1
+			}
+		} else {
+			if num > input[mid] && num <= input[end-1] {
+				start = mid + 1
+			} else {
+				end = mid - 1
+			}
+		}
+	}
+	return -1
+}
+
+func (s *search) FindPeakElement(input []int) int {
+	start, end := 0, len(input)-1
+	for start <= end {
+		mid := (start + end) / 2
+		if (mid == 0 || input[mid-1] <= input[mid]) && (mid == (len(input)-1) || input[mid+1] <= input[mid]) {
+			return input[mid]
+		} else {
+			if mid > 0 && input[mid]-1 >= input[mid] {
+				end = mid - 1
+			} else {
+				start = mid + 1
+			}
+		}
+	}
+	return -1
 }

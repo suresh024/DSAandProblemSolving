@@ -9,4 +9,6 @@ type Search interface {
 	CountOnesInBinaryArray(input []int) int
 	SquareRoot(num int) int
 	SearchInInfiniteArray(input []int, num int) int
+	SearchInRotatedArray(input []int, num int) int
+	FindPeakElement(input []int) int
 }
