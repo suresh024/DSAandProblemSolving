@@ -15,4 +15,6 @@ func SearchRunner() {
 	fmt.Println(searchInst.SearchInInfiniteArray([]int{1, 10, 15, 20, 40, 60, 80, 100, 200, 500}, 100))
 	fmt.Println(searchInst.SearchInRotatedArray([]int{10, 20, 40, 60, 5, 8}, 5))
 	fmt.Println(searchInst.FindPeakElement([]int{80, 70, 90}))
+	fmt.Println(searchInst.MedianOfTwoSortedArrays([]int{1, 3, 5, 7}, []int{2, 4, 6, 8, 9}, 4, 5))
+	fmt.Println(searchInst.RepeatingElements([]int{0, 1, 2, 3, 5, 4, 6, 2}))
 }

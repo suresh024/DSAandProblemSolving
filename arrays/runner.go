@@ -29,4 +29,6 @@ func ArrayRunner() {
 	fmt.Println(arrayObj.SubArrayWithGivenSum([]int{4, 8, 12, 5}, 17))
 	arrayObj.PrefixSumProblem([]int{2, 8, 3, 9, 6, 5, 4})
 	fmt.Println(arrayObj.EquilibriumElementInArray([]int{3, 4, 8, -9, 9, 7}))
+	arrayObj.FindDuplicateInArray([]int{3, 1, 3, 1, 3})
+	fmt.Println(arrayObj.FindTwoSumSortedArray([]int{2, 5, 8, 12, 30}, 7))
 }

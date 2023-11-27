@@ -358,3 +358,38 @@ func (a *array) EquilibriumElementInArray(input []int) bool {
 
 	return false
 }
+
+// []int{1,1,1,1}
+func (a *array) FindDuplicateInArray(input []int) {
+	input = []int{1, 1, 4, 1, 5}
+	for i := 0; i < len(input); i++ {
+		index := abs(input[i]) - 1
+		if input[index] > 0 {
+			input[index] = -input[index]
+		} else {
+			fmt.Printf("Duplicate %d\n", abs(input[i]))
+		}
+	}
+	fmt.Println(input)
+}
+func abs(x int) int {
+	if x < 0 {
+		return -x
+	}
+	return x
+}
+
+func (a *array) FindTwoSumSortedArray(input []int, num int) bool {
+	i, j := 0, len(input)-1
+
+	for i < j {
+		if input[i]+input[j] == num {
+			return true
+		} else if input[i]+input[j] < num {
+			i += 1
+		} else {
+			j -= 1
+		}
+	}
+	return false
+}

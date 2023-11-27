@@ -23,4 +23,6 @@ type ArrayProblems interface {
 	SubArrayWithGivenSum(input []int, sum int) bool
 	PrefixSumProblem(input []int)
 	EquilibriumElementInArray(input []int) bool
+	FindDuplicateInArray(input []int)
+	FindTwoSumSortedArray(input []int, num int) bool
 }

@@ -1,5 +1,10 @@
 package search
 
+import (
+	"github.com/suresh024/DSAandProblemSolving/utils"
+	"math"
+)
+
 type search struct {
 	searchInterface Search
 }
@@ -178,4 +183,58 @@ func (s *search) FindPeakElement(input []int) int {
 		}
 	}
 	return -1
+}
+
+func (s *search) MedianOfTwoSortedArrays(a1, a2 []int, n1, n2 int) int {
+	start, end := 0, n1
+	for start <= end {
+		i1 := (start + end) / 2
+		i2 := (n1+n2+1)/2 - i1
+		min1, min2, max1, max2 := math.MaxInt, math.MaxInt, math.MinInt, math.MinInt
+
+		if i1 > 0 {
+			max1 = a1[i1-1]
+		}
+		if i1 < n1 {
+			min1 = a1[i1]
+		}
+		if i2 > 0 {
+			max2 = a2[i2-1]
+		}
+		if i2 < n2 {
+			min2 = a2[i2]
+		}
+
+		if max1 <= min2 && max2 <= min1 {
+			if (n1+n2)%2 == 0 {
+				return (utils.Max(max1, max2) + utils.Min(min1, min2)) / 2
+			} else {
+				return utils.Max(max1, max2)
+			}
+		} else if max1 > min2 {
+			end = i1 - 1
+		} else {
+			start = i1 + 1
+		}
+	}
+	return 0
+}
+
+func (s *search) RepeatingElements(input []int) int {
+	slow, fast := input[0]+1, input[0]+1
+	for {
+		slow = input[slow] + 1
+		fast = input[input[fast]+1] + 1
+		if slow == fast {
+			break
+		}
+	}
+
+	slow = input[0] + 1
+
+	for slow != fast {
+		slow = input[slow] + 1
+		fast = input[fast] + 1
+	}
+	return slow - 1
 }

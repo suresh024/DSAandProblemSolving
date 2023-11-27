@@ -11,4 +11,6 @@ type Search interface {
 	SearchInInfiniteArray(input []int, num int) int
 	SearchInRotatedArray(input []int, num int) int
 	FindPeakElement(input []int) int
+	MedianOfTwoSortedArrays(a1, a2 []int, n1, n2 int) int
+	RepeatingElements(input []int) int
 }
