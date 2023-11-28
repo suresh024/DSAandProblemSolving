@@ -238,3 +238,36 @@ func (s *search) RepeatingElements(input []int) int {
 	}
 	return slow - 1
 }
+
+func (s *search) MinPages(books []int, n, k int) int {
+	max, sum := books[0], books[0]
+	for i := 1; i < n; i++ {
+		sum += books[i]
+		max = utils.Max(max, books[i])
+	}
+	low, high, res := max, sum, 0
+	for low <= high {
+		mid := (low + high) / 2
+		if isFeasable(books, n, k, mid) {
+			res = mid
+			high = mid - 1
+		} else {
+			low = mid + 1
+		}
+	}
+	return res
+}
+
+func isFeasable(books []int, n, k, mid int) bool {
+	req, sum := 1, 0
+	for i := 0; i < n; i++ {
+		if sum+books[i] > mid {
+			req += 1
+			sum = books[i]
+		} else {
+			sum += books[i]
+		}
+	}
+
+	return req <= k
+}

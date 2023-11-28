@@ -2,11 +2,13 @@ package runner
 
 import (
 	"fmt"
-	"github.com/suresh024/DSAandProblemSolving/search"
+	"github.com/suresh024/DSAandProblemSolving/Sort"
 )
 
 func Run() {
 	//arrays.ArrayRunner()
-	search.SearchRunner()
+	//search.SearchRunner()
+	//leetcode.LeetCodeRunner()
+	Sort.SortRunner()
 	fmt.Println("runner")
 }

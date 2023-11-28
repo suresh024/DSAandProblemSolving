@@ -13,4 +13,5 @@ type Search interface {
 	FindPeakElement(input []int) int
 	MedianOfTwoSortedArrays(a1, a2 []int, n1, n2 int) int
 	RepeatingElements(input []int) int
+	MinPages(books []int, n, k int) int
 }
